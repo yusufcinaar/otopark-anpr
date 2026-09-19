@@ -29,12 +29,17 @@ sonra `.env` içindeki `METCOM_PROFILE_HOST` alanına kendi cihaz adresinizi gir
 arayüzde komut doğrulamasını tamamlayın. Yayın sürümü bu komutları kendiliğinden etkinleştirmez.
 Bilinmeyen fiziksel kapatma komutu başarılıymış gibi raporlanmaz.
 
-## Veri ve gizlilik
+## Kayıtlar nerede tutuluyor?
 
-- Kalıcı veriler: `%LOCALAPPDATA%\OtoparkANPRPublic\data`
+Programın kayıt klasörünü açmak için şu yolu Dosya Gezgini'nin adres çubuğuna yapıştırabilirsin:
+
+```text
+%LOCALAPPDATA%\OtoparkANPRPublic\data
+```
+
 - Kurulum ortamı: `%LOCALAPPDATA%\OtoparkANPRPublic\runtime`
 - Farklı bir veri klasörü için uygulamayı başlatmadan önce `OTOPARK_DATA_DIR` ortam değişkenini ayarlayın.
-- `.env`, veritabanları, fotoğraf kayıtları, raporlar, loglar, yedekler ve paketler Git dışında tutulur.
+- `.env` ayar dosyası, veritabanları, fotoğraf kayıtları, raporlar, loglar ve yedekler `.gitignore` ile Git dışında tutulur.
 - Örneklerdeki `192.0.2.x` ve `198.51.100.x` adresleri temsili adreslerdir.
 - Kamera/SMTP parolaları Windows DPAPI ile saklanır; başka Windows hesabına taşındığında yeniden girilmelidir.
 

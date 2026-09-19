@@ -49,18 +49,6 @@ Raporlar ekranında plaka arayarak aracın giriş ve çıkış saatlerini, içer
 
 ![Araç kayıtları ve rapor ekranı](docs/images/reports.png)
 
-## GitHub'a hangi bilgiler eklendi?
-
-Burada programın kodları ve örnek ekran görüntüleri var. Kullandığım işletmenin IP adreslerini, kamera şifrelerini ve mail bilgilerini kaldırdım. Gerçek plakalar, araç fotoğrafları ve veritabanı da bu depoda yok.
-
-Bu sürüm kayıtlarını bilgisayarda şu klasörde tutuyor:
-
-```text
-%LOCALAPPDATA%\OtoparkANPRPublic\data
-```
-
-Bu yolu Dosya Gezgini'nin adres çubuğuna yapıştırarak klasörü açabilirsin. `.env` ayar dosyası ve çalışma sırasında oluşan özel kayıtlar `.gitignore` ile Git dışında tutuluyor.
-
 ## Kod tarafı
 
 Program Python ile yazıldı. Arayüzde **PySide6**, plaka okumada **FastALPR / ONNX**, kayıtları saklamak için **SQLite** kullanılıyor.
