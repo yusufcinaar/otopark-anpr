@@ -1,110 +1,78 @@
-<p align="center"><img src="docs/images/overview.png" alt="Otopark ANPR — örnek verilerle uygulama ekranı" width="100%"></p>
+# Araç Plaka Tanıma ve Otopark Yönetimi
 
-# Otopark ANPR
+Bu projeyi, otoparka giren ve çıkan araçları takip etmek ve park ücretini hesaplamak için geliştirdim. Windows üzerinde çalışan, Türkçe arayüzü olan bir masaüstü programı.
 
-**Araç plaka tanıma ve otopark yönetimi için Windows masaüstü uygulaması.**
+Araç geldiğinde kamera plakasını okuyor ve giriş saatini kaydediyor. Çıkışta da aynı plakayı bulup aracın ne kadar kaldığını ve ödeyeceği tutarı gösteriyor. Kamera görüntüleri, ödeme, aboneler ve raporlar aynı programın içinde bulunuyor.
 
-Python · PySide6 · FastALPR / ONNX · SQLite
+![Programın ana ekranı](docs/images/overview.png)
 
-İki giriş ve bir çıkış kamerasından gelen olayları tek ekranda takip edin;
-park süresini hesaplayın, ödeme alın, aboneleri yönetin ve çıkış bariyerini kontrol edin.
-Arayüz Türkçedir. Bu depo, işletmeye özel verilerden arındırılmış genel dağıtımdır.
+**Buradaki ekran görüntüleri örnek verilerle hazırlandı.** Araç çizimleri ve plakalar demo amaçlı; gerçek araç fotoğrafları veya işletme kayıtları değil.
 
-## Özellikler
+## Programda neler var?
 
-| Alan | İşlevler |
+- **Plaka okuma:** İki giriş ve bir çıkış kamerası için ayrı alanlar var. Okunan plakayı ve araç görüntüsünü ekranda görebiliyorsun.
+- **Giriş ve çıkış takibi:** Hangi araç içeride, ne zaman girmiş, ne zaman çıkmış; kayıtlarından bakabiliyorsun.
+- **Ücret ve ödeme:** Belirlenen tarifeye göre park ücretini hesaplıyor. Nakit ödeme alındığında para üstünü de gösteriyor.
+- **Aboneler:** Sürekli gelen araçları abone olarak ekleyebiliyorsun. Excel'den abone listesi aktarma da var.
+- **Bariyer ve tabela:** Uyumlu cihazlar bağlandığında çıkış bariyerini kontrol edebiliyor. Ödeme sırasında tabelada plaka ve tutar gösteriliyor.
+- **Serbest geçiş:** Ücret alınmadan geçiş yapılabiliyor; araçların giriş ve çıkış kayıtları tutulmaya devam ediyor.
+- **Raporlar:** Plakayla eski kayıtları arayabiliyor, Excel/PDF raporu alabiliyor ve e-posta raporlarını ayarlayabiliyorsun.
+- **Fotoğraf büyütme:** Giriş, çıkış, ödeme ve rapor ekranındaki fotoğraflara tıklayıp yakından bakabiliyorsun.
+- **Kullanıcı hesapları:** Yönetici ve kasiyer gibi farklı yetkilerle kullanılabiliyor.
+
+## Nasıl kurulur?
+
+1. Bu sayfanın üstündeki **Code → Download ZIP** ile projeyi indir.
+2. ZIP dosyasını bir klasöre çıkar. Dosyaları ZIP'in içinden çalıştırma.
+3. **`kur.bat`** dosyasına çift tıkla. Gerekli Python sürümünü, kütüphaneleri ve plaka okuma modellerini hazırlıyor. İlk kurulumda internet bağlantısı gerekiyor.
+4. Kurulum bittikten sonra **`run.bat`** dosyasını aç.
+
+İlk giriş bilgileri:
+
+| Kullanıcı adı | Şifre |
 | --- | --- |
-| Plaka tanıma | FastALPR / ONNX, RTSP, ONVIF keşfi ve HTTP kamera olayları |
-| Operasyon | Giriş–çıkış eşleştirme, içerideki araçlar, tekrar olay kontrolü |
-| Ödeme | Saatlik tarife, nakit ve diğer ödeme yöntemleri, para üstü, vardiya |
-| Üyelik | Abone yönetimi, Excel aktarımı, kara liste |
-| Donanım | Simülasyon, seri port, TCP, HTTP, Metcom I/O ve LED tabela sürücüleri |
-| Raporlama | Araç/plaka arama, Excel/PDF, zamanlanmış SMTP raporları |
-| Yetkilendirme | Kullanıcı rolleri, işlem kayıtları, Windows DPAPI ile cihaz parolaları |
-| Görseller | Giriş, çıkış, ödeme ve rapor fotoğraflarında tıklayarak büyütme ve yakınlaştırma |
+| `admin` | `admin` |
 
-## Ekran görüntüleri
+Kendi kullanımına geçerken bu şifreyi kullanıcı ayarlarından değiştir.
 
-Görüntüler, uygulamanın gerçek arayüzünden **sentetik plakalar ve çizilmiş örnek karelerle**
-üretilmiştir. Gerçek kamera görüntüsü, müşteri kaydı veya tesis bilgisi içermez.
+Şu an ayrı bir `.exe` dosyası yok. Programı `run.bat` ile açıyorsun.
 
-![Araç kayıtları ve rapor araması](docs/images/reports.png)
+## Kamera olmadan deneyebilir miyim?
 
-## Hızlı başlangıç — Windows
+Evet. GitHub'daki sürüm ilk açılışta **simülasyon modunda** çalışıyor. Yani gerçek kamera veya bariyer bağlamadan örnek araçlarla programı deneyebiliyorsun. Kamera alanlarındaki **Girişi Simüle Et** ve **Çıkışı Simüle Et** düğmeleri bunun için var.
 
-1. Depoyu ZIP olarak indirin ve yerel bir klasöre çıkarın veya Git ile klonlayın.
-2. `kur.bat` dosyasını çalıştırın. Python 3.12, bağımlılıklar ve OCR modelleri için ilk kurulumda internet gerekir.
-3. `run.bat` dosyasını çalıştırın.
-4. İlk giriş: **admin / admin**. Kendi kurulumunuzda kullanıcı yönetiminden parolayı değiştirin.
+Gerçek cihazlarla kullanmak istersen kendi kamera, bariyer ve tabela bilgilerini girmen gerekiyor. E-posta göndermek için de kendi mail ayarlarını eklemelisin. Bunların ayrıntılarını [kurulum notlarına](docs/KURULUM.md) yazdım.
 
-İlk açılış **simülasyon modundadır**. Kamera adresleri ve hesapları boştur;
-bariyer `MOCK` sürücüsünü kullanır, fiziksel LED ve otomatik e-posta raporları kapalıdır.
-Kamera kartlarındaki simülasyon düğmeleri veya simülasyon ekranı ile akışı deneyebilirsiniz.
-Bu sürüm bağımsız EXE değildir; kurulum ve başlatma BAT dosyaları ile yapılır.
+## Kayıtları nasıl görüyorum?
 
-### Geliştirici kurulumu
+Raporlar ekranında plaka arayarak aracın giriş ve çıkış saatlerini, içeride kaldığı süreyi ve kayıtlı fotoğraflarını görebiliyorsun.
 
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python -m pip install -r requirements.txt
-Copy-Item .env.example .env
-.\.venv\Scripts\python -m app.main
-```
+![Araç kayıtları ve rapor ekranı](docs/images/reports.png)
 
-## Gerçek cihazları bağlama
+## GitHub'a hangi bilgiler eklendi?
 
-1. `.env` içindeki `SIMULATION_MODE=false` değerini ayarlayıp uygulamayı yeniden başlatın.
-2. **Tanımlar → Kamera Tanımları** üzerinden kendi IP, ONVIF/RTSP ve hesap bilgilerinizi girin.
-3. Bariyer ekranında kendi cihazınızın protokolünü, adresini ve üretici komutlarını yapılandırın.
-4. LED tabelayı kendi adresinizle etkinleştirin.
-5. SMTP ve rapor alıcılarını kendi hesabınızla yapılandırıp test gönderimi yapın; ardından zamanlamayı etkinleştirin.
+Burada programın kodları ve örnek ekran görüntüleri var. Kullandığım işletmenin IP adreslerini, kamera şifrelerini ve mail bilgilerini kaldırdım. Gerçek plakalar, araç fotoğrafları ve veritabanı da bu depoda yok.
 
-Webhook varsayılan olarak yalnız `127.0.0.1:8090` üzerinde dinler.
-LAN kameraları için `WEBHOOK_HOST` değerini kendi ağınıza göre değiştirin.
-Webhook'ta yerleşik kimlik doğrulama bulunmaz; internetten erişime açmayın,
-güvenlik duvarında yalnız yetkili kamera adreslerine izin verin.
-
-Metcom OUT3 örnek komutları her cihaz için genel değildir. Uyumlu donanımda doğruladıktan
-sonra `.env` içindeki `METCOM_PROFILE_HOST` alanına kendi cihaz adresinizi girin ve
-arayüzde komut doğrulamasını tamamlayın. Yayın sürümü bu komutları kendiliğinden etkinleştirmez.
-Bilinmeyen fiziksel kapatma komutu başarılıymış gibi raporlanmaz.
-
-## Veri ve gizlilik
-
-- Kalıcı veriler: `%LOCALAPPDATA%\OtoparkANPRPublic\data`
-- Kurulum ortamı: `%LOCALAPPDATA%\OtoparkANPRPublic\runtime`
-- Farklı bir veri klasörü için uygulamayı başlatmadan önce `OTOPARK_DATA_DIR` ortam değişkenini ayarlayın.
-- `.env`, veritabanları, fotoğraf kayıtları, raporlar, loglar, yedekler ve paketler Git dışında tutulur.
-- Örneklerdeki `192.0.2.x` ve `198.51.100.x` adresleri temsili adreslerdir.
-- Kamera/SMTP parolaları Windows DPAPI ile saklanır; başka Windows hesabına taşındığında yeniden girilmelidir.
-
-## Testler
-
-```powershell
-.\.venv\Scripts\python -m pip install -r requirements-dev.txt
-.\.venv\Scripts\python -m pytest -q
-```
-
-Testler geçici veritabanları ve taklit donanım kullanır. Fiziksel kamera, bariyer ve
-SMTP doğrulaması her kurulumda ayrıca yapılmalıdır. Python testleri Windows üzerinde çalıştırılır.
-
-## Proje yapısı
+Bu sürüm kayıtlarını bilgisayarda şu klasörde tutuyor:
 
 ```text
-app/anpr/       Plaka tespit ve OCR
-app/services/   Otopark iş akışları, tarifeler, yetkiler
-app/ui/         PySide6 masaüstü arayüzü
-app/reports/    Raporlar ve zamanlayıcı
-app/db.py       SQLite ve veri erişimi
-app/barrier.py  Bariyer sürücüleri
-tests/          Otomatik testler
-tools/          Güvenli demo ekran görüntüsü üretimi
+%LOCALAPPDATA%\OtoparkANPRPublic\data
 ```
 
-## Geliştirme geçmişi
+Bu yolu Dosya Gezgini'nin adres çubuğuna yapıştırarak klasörü açabilirsin. `.env` ayar dosyası ve çalışma sırasında oluşan özel kayıtlar `.gitignore` ile Git dışında tutuluyor.
 
-İlk public commit, mevcut geliştirmelerin temizlenmiş güncel sürümüdür.
-Önceki çalışmaların özeti [CHANGELOG.md](CHANGELOG.md) içindedir; geriye dönük commit geçmişi üretilmemiştir.
+## Kod tarafı
 
-Üçüncü taraf kütüphane ve modeller kendi lisanslarına tabidir. Bu depo için ayrıca
-bir açık kaynak lisansı tanımlanmamıştır.
+Program Python ile yazıldı. Arayüzde **PySide6**, plaka okumada **FastALPR / ONNX**, kayıtları saklamak için **SQLite** kullanılıyor.
+
+Kodları incelemek istersen ana bölümler şöyle:
+
+- `app/ui`: Ekranlar ve düğmeler.
+- `app/anpr`: Görüntüden plaka okuma kısmı.
+- `app/services`: Giriş, çıkış, ücret ve ödeme işlemleri.
+- `app/reports`: Rapor hazırlama ve e-posta işlemleri.
+- `tests`: Programın farklı işlevlerini kontrol eden testler.
+
+Elle kurulum ve test komutları da [kurulum notlarında](docs/KURULUM.md) var. Testlerin geçmesi, her kamera veya bariyerin doğrudan çalışacağı anlamına gelmiyor; bağlı cihazla ayrıca denemek gerekiyor.
+
+İlk yüklemede projenin güncel hâlini paylaştım. Şimdiye kadar eklenenleri [değişiklik geçmişinde](CHANGELOG.md) topladım.
