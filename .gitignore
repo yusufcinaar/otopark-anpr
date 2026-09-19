@@ -1,0 +1,30 @@
+# Secrets and operational records
+.env
+.env.*
+!.env.example
+/data/
+/captures/
+/reports/
+/logs/
+/backups/
+/output/
+/outputs/
+/tmp/
+*.db
+*.db-*
+*.sqlite*
+*.log
+*.pcap
+*.pcapng
+*.zip
+*.pem
+*.key
+# Generated environments
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
